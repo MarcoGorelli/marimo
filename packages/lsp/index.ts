@@ -122,7 +122,7 @@ export function parseTypedCommand(typedCommand: string): string[] {
     case "basedpyright":
       return [binaryPath, "--stdio"];
     case "pyrefly":
-      return [binaryPath, "server"];
+      return [binaryPath, "lsp"];
     case "ty":
       return [binaryPath, "server"];
     default:
