@@ -2480,7 +2480,7 @@ components:
       type: object
     LanguageServersConfig:
       description: "Configuration options for language servers.\n\n    **Keys.**\n\
-        \n    - `pylsp`: the pylsp config"
+        \n    - `pylsp`: the pylsp config\n    - `pyrefly`: the pyrefly config\n    - `ty`: the ty config\n    - `basedpyright`: the basedpyright config"
       properties:
         basedpyright:
           $ref: '#/components/schemas/BasedpyrightServerConfig'
@@ -3293,9 +3293,7 @@ components:
       description: 'Configuration options for Pyrefly Language Server.
 
 
-        pyrefly handles completion, hover, go-to-definition, and diagnostics,
-
-        but we only use it for diagnostics.'
+        Pyrefly handles completion, hover, go-to-definition, and diagnostics.'
       properties:
         enabled:
           type: boolean
@@ -6077,4 +6075,3 @@ paths:
       summary: Submit login form
       tags:
       - auth
-

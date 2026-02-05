@@ -606,6 +606,7 @@ class TyServer(BaseLspServer):
             variant="danger",
         )
 
+
 class PyreflyServer(BaseLspServer):
     id = "pyrefly"
 
@@ -614,19 +615,17 @@ class PyreflyServer(BaseLspServer):
         self.log_file = _loggers.get_log_directory() / "pyrefly-lsp.log"
 
     async def start(self) -> Optional[AlertNotification]:
-        # pyrefly is not required, so we don't want to alert or fail if it is not installed
+        # Pyrefly is not required, so we don't want to alert or fail if it is not installed
         if not DependencyManager.pyrefly.has():
-            LOGGER.debug("pyrefly is not installed. Skipping LSP server.")
+            LOGGER.debug("Pyrefly is not installed. Skipping LSP server.")
             return None
         return await super().start()
 
     def validate_requirements(self) -> Union[str, Literal[True]]:
         if not DependencyManager.pyrefly.has():
-            return "pyrefly is missing. Install it with `pip install pyrefly`."
-
+            return "Pyrefly is missing. Install it with `pip install pyrefly`."
         if not DependencyManager.which("node"):
             return "node.js binary is missing. Install node at https://nodejs.org/."
-
         return True
 
     def get_command(self) -> list[str]:
@@ -634,7 +633,6 @@ class PyreflyServer(BaseLspServer):
 
         lsp_bin = marimo_package_path() / "_lsp" / "index.cjs"
         pyrefly_command = f"pyrefly:{get_pyrefly_bin()}"
-
         return [
             "node",
             str(lsp_bin),
@@ -649,7 +647,7 @@ class PyreflyServer(BaseLspServer):
     def missing_binary_alert(self) -> AlertNotification:
         return AlertNotification(
             title="Pyrefly: Connection Error",
-            description="<span><a class='hyperlink' href='https://github.com/astral-sh/pyrefly'>Install pyrefly</a> for type checking support.</span>",
+            description="<span><a class='hyperlink' href='https://github.com/facebook/pyrefly'>Install pyrefly</a> for type checking support.</span>",
             variant="danger",
         )
 
@@ -682,8 +680,8 @@ class CompositeLspServer(LspServer):
         "pylsp": PyLspServer,
         "basedpyright": BasedpyrightServer,
         "ty": TyServer,
+        "pyrefly": PyreflyServer,
         "copilot": CopilotLspServer,
-        'pyrefly': PyreflyServer
     }
 
     def __init__(

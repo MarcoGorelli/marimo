@@ -4556,6 +4556,9 @@ export interface components {
      *         **Keys.**
      *
      *         - `pylsp`: the pylsp config
+     *         - `pyrefly`: the pyrefly config
+     *         - `ty`: the ty config
+     *         - `basedpyright`: the basedpyright config
      */
     LanguageServersConfig: {
       basedpyright?: components["schemas"]["BasedpyrightServerConfig"];
@@ -5025,8 +5028,7 @@ export interface components {
      * PyreflyLanguageServerConfig
      * @description Configuration options for Pyrefly Language Server.
      *
-     *     pyrefly handles completion, hover, go-to-definition, and diagnostics,
-     *     but we only use it for diagnostics.
+     *     Pyrefly handles completion, hover, go-to-definition, and diagnostics.
      */
     PyreflyLanguageServerConfig: {
       enabled?: boolean;

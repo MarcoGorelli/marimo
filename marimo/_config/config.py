@@ -456,13 +456,13 @@ class TyLanguageServerConfig(TypedDict, total=False):
 
     enabled: bool
 
+
 @dataclass
 class PyreflyLanguageServerConfig(TypedDict, total=False):
     """
     Configuration options for Pyrefly Language Server.
 
-    pyrefly handles completion, hover, go-to-definition, and diagnostics,
-    but we only use it for diagnostics.
+    Pyrefly handles completion, hover, go-to-definition, and diagnostics.
     """
 
     enabled: bool
