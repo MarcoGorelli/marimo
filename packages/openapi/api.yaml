@@ -2170,6 +2170,9 @@ components:
         pylsp:
           default: false
           type: boolean
+        pyrefly:
+          default: false
+          type: boolean
         terminal:
           default: false
           type: boolean
@@ -2483,6 +2486,8 @@ components:
           $ref: '#/components/schemas/BasedpyrightServerConfig'
         pylsp:
           $ref: '#/components/schemas/PythonLanguageServerConfig'
+        pyrefly:
+          $ref: '#/components/schemas/PyreflyLanguageServerConfig'
         ty:
           $ref: '#/components/schemas/TyLanguageServerConfig'
       required: []
@@ -3283,6 +3288,19 @@ components:
       - schema
       - tableName
       title: PreviewSQLTableRequest
+      type: object
+    PyreflyLanguageServerConfig:
+      description: 'Configuration options for Pyrefly Language Server.
+
+
+        pyrefly handles completion, hover, go-to-definition, and diagnostics,
+
+        but we only use it for diagnostics.'
+      properties:
+        enabled:
+          type: boolean
+      required: []
+      title: PyreflyLanguageServerConfig
       type: object
     PythonLanguageServerConfig:
       description: 'Configuration options for Python Language Server.

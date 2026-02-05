@@ -123,6 +123,8 @@ export function parseTypedCommand(typedCommand: string): string[] {
       return [binaryPath, "--stdio"];
     case "ty":
       return [binaryPath, "server"];
+    case "pyrefly":
+      return [binaryPath, "server"];
     default:
       throw new Error(`Unknown LSP server type: ${serverType}`);
   }

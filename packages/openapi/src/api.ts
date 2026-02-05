@@ -4382,6 +4382,8 @@ export interface components {
       /** @default false */
       pylsp?: boolean;
       /** @default false */
+      pyrefly?: boolean;
+      /** @default false */
       terminal?: boolean;
       /** @default false */
       ty?: boolean;
@@ -4558,6 +4560,7 @@ export interface components {
     LanguageServersConfig: {
       basedpyright?: components["schemas"]["BasedpyrightServerConfig"];
       pylsp?: components["schemas"]["PythonLanguageServerConfig"];
+      pyrefly?: components["schemas"]["PyreflyLanguageServerConfig"];
       ty?: components["schemas"]["TyLanguageServerConfig"];
     };
     /** LayoutConfig */
@@ -5017,6 +5020,16 @@ export interface components {
       requestId: string;
       schema: string;
       tableName: string;
+    };
+    /**
+     * PyreflyLanguageServerConfig
+     * @description Configuration options for Pyrefly Language Server.
+     *
+     *     pyrefly handles completion, hover, go-to-definition, and diagnostics,
+     *     but we only use it for diagnostics.
+     */
+    PyreflyLanguageServerConfig: {
+      enabled?: boolean;
     };
     /**
      * PythonLanguageServerConfig

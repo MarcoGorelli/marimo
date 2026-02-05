@@ -175,6 +175,35 @@ const tyLspClient = once((_: LSPConfig) => {
   return notebookClient;
 });
 
+const pyreflyLspClient = once((_: LSPConfig) => {
+  let resyncCallback: (() => Promise<void>) | undefined;
+
+  const transport = createTransport("pyrefly", async () => {
+    await resyncCallback?.();
+  });
+
+  const lspClientOpts = {
+    transport,
+    rootUri: getLSPDocumentRootUri(),
+    workspaceFolders: [],
+  };
+
+  // We wrap the client in a NotebookLanguageServerClient to add some
+  // additional functionality to handle multiple cells
+  const notebookClient = new NotebookLanguageServerClient(
+    new LanguageServerClient({
+      ...lspClientOpts,
+      getWorkspaceConfiguration: (_) => [{ disableLanguageServices: true }],
+    }),
+    {},
+  );
+
+  // Set the resync callback now that the client exists
+  resyncCallback = () => notebookClient.resyncAllDocuments();
+
+  return notebookClient;
+});
+
 const pyrightClient = once((_: LSPConfig) => {
   let resyncCallback: (() => Promise<void>) | undefined;
 
