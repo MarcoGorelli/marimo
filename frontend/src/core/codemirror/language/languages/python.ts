@@ -175,7 +175,7 @@ const tyLspClient = once((_: LSPConfig) => {
   return notebookClient;
 });
 
-const pyreflyLspClient = once((_: LSPConfig) => {
+const pyreflyClient = once((_: LSPConfig) => {
   let resyncCallback: (() => Promise<void>) | undefined;
 
   const transport = createTransport("pyrefly", async () => {
@@ -291,6 +291,9 @@ export class PythonLanguageAdapter implements LanguageAdapter<{}> {
       }
       if (lspConfig?.ty?.enabled && hasCapability("ty")) {
         clients.push(tyLspClient(lspConfig));
+      }
+      if (lspConfig?.ty?.enabled && hasCapability("pyrefly")) {
+        clients.push(tyLspClient(pyreflyClient));
       }
       if (lspConfig?.basedpyright?.enabled && hasCapability("basedpyright")) {
         clients.push(pyrightClient(lspConfig));
