@@ -292,8 +292,8 @@ export class PythonLanguageAdapter implements LanguageAdapter<{}> {
       if (lspConfig?.ty?.enabled && hasCapability("ty")) {
         clients.push(tyLspClient(lspConfig));
       }
-      if (lspConfig?.ty?.enabled && hasCapability("pyrefly")) {
-        clients.push(tyLspClient(pyreflyClient));
+      if (lspConfig?.pyrefly?.enabled && hasCapability("pyrefly")) {
+        clients.push(pyreflyClient(lspConfig));
       }
       if (lspConfig?.basedpyright?.enabled && hasCapability("basedpyright")) {
         clients.push(pyrightClient(lspConfig));
